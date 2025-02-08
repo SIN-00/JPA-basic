@@ -21,12 +21,19 @@ public class JpaMain {
 
             Member member = new Member();
             member.setName("member1");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             em.persist(member);
 
+            em.flush();
+            em.clear();
+
             Member findMember = em.find(Member.class, member.getId());
-            Long findTeamId = findMember.getTeamId();
-            Team findTeam = em.find(Team.class, findTeamId);
+            Team findTeam = findMember.getTeam();
+
+            //만약 연관관계 수정할 때 이렇게 연관관계를 수정할 수도 있다.
+            Team newTeam = em.find(Team.class, 100L);
+            findMember.setTeam(newTeam);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

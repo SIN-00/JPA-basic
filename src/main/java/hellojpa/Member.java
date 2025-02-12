@@ -43,7 +43,15 @@ public class Member {
         this.username = name;
     }
 
-//    public Long getTeamId() {
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
+    }
+    //    public Long getTeamId() {
 //        return teamId;
 //    }
 //
